@@ -1,8 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x", "linux-musl-arm64-openssl-3.0.x"]
 }
 
 datasource db {
@@ -10,47 +8,445 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
-  role      String   @default("user") // admin, user
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model dashboard_preferences {
+  id         String   @id
+  user_id    String
+  card_id    String
+  enabled    Boolean  @default(true)
+  order      Int      @default(0)
+  created_at DateTime @default(now())
+  updated_at DateTime
+  users      users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@unique([user_id, card_id])
 }
 
-model Host {
-  id          Int       @id @default(autoincrement())
-  hostname    String    @unique
-  os          String?
-  ipAddress   String?
-  lastSeen    DateTime?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  packages    Package[]
+model host_groups {
+  id                      String                    @id
+  name                    String                    @unique
+  description             String?
+  color                   String?                   @default("#3B82F6")
+  created_at              DateTime                  @default(now())
+  updated_at              DateTime
+  host_group_memberships  host_group_memberships[]
+  auto_enrollment_tokens  auto_enrollment_tokens[]
 }
 
-model Package {
-  id            Int      @id @default(autoincrement())
-  name          String
-  version       String
-  currentVersion String?
-  status        String   @default("installed") // installed, outcome
-  hostId        Int
-  host          Host     @relation(fields: [hostId], references: [id])
-  updatedAt     DateTime @updatedAt
+model host_group_memberships {
+  id            String      @id
+  host_id       String
+  host_group_id String
+  created_at    DateTime    @default(now())
+  hosts         hosts       @relation(fields: [host_id], references: [id], onDelete: Cascade)
+  host_groups   host_groups @relation(fields: [host_group_id], references: [id], onDelete: Cascade)
 
-  @@unique([hostId, name])
+  @@unique([host_id, host_group_id])
+  @@index([host_id])
+  @@index([host_group_id])
 }
 
-model Command {
-  id        Int      @id @default(autoincrement())
-  type      String   // update, upgrade, remove_repo
-  payload   String?  // e.g. package name or repo name
-  status    String   @default("pending") // pending, sent, completed, failed
-  output    String?  // log output from agent
-  hostId    Int
-  host      Host     @relation(fields: [hostId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model host_packages {
+  id                 String   @id
+  host_id            String
+  package_id         String
+  current_version    String
+  available_version  String?
+  needs_update       Boolean  @default(false)
+  is_security_update Boolean  @default(false)
+  last_checked       DateTime @default(now())
+  hosts              hosts    @relation(fields: [host_id], references: [id], onDelete: Cascade)
+  packages           packages @relation(fields: [package_id], references: [id], onDelete: Cascade)
+
+  @@unique([host_id, package_id])
+  @@index([host_id])
+  @@index([package_id])
+  @@index([needs_update])
+  @@index([is_security_update])
+  @@index([host_id, needs_update])
+  @@index([host_id, needs_update, is_security_update])
+  @@index([package_id, needs_update])
+  @@index([last_checked])
+}
+
+model host_repositories {
+  id            String       @id
+  host_id       String
+  repository_id String
+  is_enabled    Boolean      @default(true)
+  last_checked  DateTime     @default(now())
+  hosts         hosts        @relation(fields: [host_id], references: [id], onDelete: Cascade)
+  repositories  repositories @relation(fields: [repository_id], references: [id], onDelete: Cascade)
+
+  @@unique([host_id, repository_id])
+}
+
+model hosts {
+  id                      String                    @id
+  machine_id              String?
+  friendly_name           String
+  ip                      String?
+  os_type                 String
+  os_version              String
+  architecture            String?
+  last_update             DateTime                  @default(now())
+  status                  String                    @default("active")
+  created_at              DateTime                  @default(now())
+  updated_at              DateTime
+  api_id                  String                    @unique
+  api_key                 String                    @unique
+  agent_version           String?
+  auto_update             Boolean                   @default(true)
+  cpu_cores               Int?
+  cpu_model               String?
+  disk_details            Json?
+  dns_servers             Json?
+  gateway_ip              String?
+  hostname                String?
+  kernel_version          String?
+  installed_kernel_version String?
+  load_average             Json?
+  network_interfaces      Json?
+  ram_installed           Int?
+  selinux_status          String?
+  swap_size               Int?
+  system_uptime           String?
+  notes                   String?
+  needs_reboot            Boolean?                  @default(false)
+  host_packages           host_packages[]
+  host_repositories       host_repositories[]
+  host_group_memberships  host_group_memberships[]
+  update_history          update_history[]
+  job_history             job_history[]
+  docker_volumes          docker_volumes[]
+  docker_networks         docker_networks[]
+  commands                commands[]
+
+  @@index([machine_id])
+  @@index([friendly_name])
+  @@index([hostname])
+  @@index([needs_reboot])
+}
+
+model packages {
+  id             String          @id
+  name           String          @unique
+  description    String?
+  category       String?
+  latest_version String?
+  created_at     DateTime        @default(now())
+  updated_at     DateTime
+  host_packages  host_packages[]
+
+  @@index([name])
+  @@index([category])
+}
+
+model repositories {
+  id                String              @id
+  name              String
+  url               String
+  distribution      String
+  components        String
+  repo_type         String
+  is_active         Boolean             @default(true)
+  is_secure         Boolean             @default(true)
+  priority          Int?
+  description       String?
+  created_at        DateTime            @default(now())
+  updated_at        DateTime
+  host_repositories host_repositories[]
+
+  @@unique([url, distribution, components])
+}
+
+model role_permissions {
+  id                  String   @id
+  role                String   @unique
+  can_view_dashboard  Boolean  @default(true)
+  can_view_hosts      Boolean  @default(true)
+  can_manage_hosts    Boolean  @default(false)
+  can_view_packages   Boolean  @default(true)
+  can_manage_packages Boolean  @default(false)
+  can_view_users      Boolean  @default(false)
+  can_manage_users    Boolean  @default(false)
+  can_view_reports    Boolean  @default(true)
+  can_export_data     Boolean  @default(false)
+  can_manage_settings Boolean  @default(false)
+  created_at          DateTime @default(now())
+  updated_at          DateTime
+}
+
+model settings {
+  id                     String    @id
+  server_url             String    @default("http://localhost:3001")
+  server_protocol        String    @default("http")
+  server_host            String    @default("localhost")
+  server_port            Int       @default(3001)
+  created_at             DateTime  @default(now())
+  updated_at             DateTime
+  update_interval        Int       @default(60)
+  auto_update            Boolean   @default(false)
+  github_repo_url        String    @default("https://github.com/PatchMon/PatchMon.git")
+  ssh_key_path           String?
+  repository_type        String    @default("public")
+  last_update_check      DateTime?
+  latest_version         String?
+  update_available       Boolean   @default(false)
+  signup_enabled         Boolean   @default(false)
+  default_user_role      String    @default("user")
+  ignore_ssl_self_signed Boolean   @default(false)
+  logo_dark              String?   @default("/assets/logo_dark.png")
+  logo_light             String?   @default("/assets/logo_light.png")
+  favicon                String?   @default("/assets/logo_square.svg")
+  metrics_enabled        Boolean   @default(true)
+  metrics_anonymous_id   String?
+  metrics_last_sent      DateTime?
+}
+
+model update_history {
+  id              String   @id
+  host_id         String
+  packages_count  Int
+  security_count   Int
+  total_packages  Int?
+  payload_size_kb Float?
+  execution_time  Float?
+  timestamp       DateTime @default(now())
+  status          String   @default("success")
+  error_message   String?
+  hosts           hosts    @relation(fields: [host_id], references: [id], onDelete: Cascade)
+}
+
+model system_statistics {
+  id                    String   @id
+  unique_packages_count Int
+  unique_security_count Int
+  total_packages        Int
+  total_hosts           Int
+  hosts_needing_updates Int
+  timestamp             DateTime @default(now())
+
+  @@index([timestamp])
+}
+
+model users {
+  id                     String                   @id
+  username               String                   @unique
+  email                  String                   @unique
+  password_hash          String
+  role                   String                   @default("admin")
+  is_active              Boolean                  @default(true)
+  last_login             DateTime?
+  created_at             DateTime                 @default(now())
+  updated_at             DateTime
+  tfa_backup_codes       String?
+  tfa_enabled            Boolean                  @default(false)
+  tfa_secret             String?
+  first_name             String?
+  last_name              String?
+  theme_preference       String?                  @default("dark")
+  color_theme            String?                  @default("cyber_blue")
+  dashboard_preferences  dashboard_preferences[]
+  user_sessions          user_sessions[]
+  auto_enrollment_tokens auto_enrollment_tokens[]
+}
+
+model user_sessions {
+  id                String   @id
+  user_id           String
+  refresh_token     String   @unique
+  access_token_hash String?
+  ip_address        String?
+  user_agent        String?
+  device_fingerprint String?
+  last_activity     DateTime @default(now())
+  expires_at        DateTime
+  created_at        DateTime @default(now())
+  is_revoked        Boolean  @default(false)
+  tfa_remember_me   Boolean  @default(false)
+  tfa_bypass_until  DateTime?
+  login_count       Int      @default(1)
+  last_login_ip     String?
+  users             users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@index([refresh_token])
+  @@index([expires_at])
+  @@index([tfa_bypass_until])
+  @@index([device_fingerprint])
+}
+
+model auto_enrollment_tokens {
+  id                    String       @id
+  token_name            String
+  token_key             String       @unique
+  token_secret          String
+  created_by_user_id    String?
+  is_active             Boolean      @default(true)
+  allowed_ip_ranges     String[]
+  max_hosts_per_day     Int          @default(100)
+  hosts_created_today   Int          @default(0)
+  last_reset_date       DateTime     @default(now()) @db.Date
+  default_host_group_id String?
+  created_at            DateTime     @default(now())
+  updated_at            DateTime
+  last_used_at          DateTime?
+  expires_at            DateTime?
+  metadata              Json?
+  scopes                Json?
+  users                 users?       @relation(fields: [created_by_user_id], references: [id], onDelete: SetNull)
+  host_groups           host_groups? @relation(fields: [default_host_group_id], references: [id], onDelete: SetNull)
+
+  @@index([token_key])
+  @@index([is_active])
+}
+
+model docker_containers {
+  id                String              @id
+  host_id           String
+  container_id      String
+  name              String
+  image_id          String?
+  image_name        String
+  image_tag         String              @default("latest")
+  status            String
+  state             String?
+  ports             Json?
+  created_at        DateTime
+  started_at        DateTime?
+  updated_at        DateTime
+  last_checked      DateTime            @default(now())
+  docker_images     docker_images?      @relation(fields: [image_id], references: [id], onDelete: SetNull)
+
+  @@unique([host_id, container_id])
+  @@index([host_id])
+  @@index([image_id])
+  @@index([status])
+  @@index([name])
+}
+
+model docker_images {
+  id                 String                 @id
+  repository         String
+  tag                String                 @default("latest")
+  image_id           String
+  digest             String?
+  size_bytes         BigInt?
+  source             String                 @default("docker-hub")
+  created_at         DateTime
+  last_pulled        DateTime?
+  last_checked       DateTime               @default(now())
+  updated_at         DateTime
+  docker_containers  docker_containers[]
+  docker_image_updates docker_image_updates[]
+
+  @@unique([repository, tag, image_id])
+  @@index([repository])
+  @@index([source])
+  @@index([repository, tag])
+}
+
+model docker_image_updates {
+  id                String        @id
+  image_id          String
+  current_tag       String
+  available_tag     String
+  is_security_update Boolean      @default(false)
+  severity          String?
+  changelog_url     String?
+  created_at        DateTime      @default(now())
+  updated_at        DateTime
+  docker_images     docker_images @relation(fields: [image_id], references: [id], onDelete: Cascade)
+
+  @@unique([image_id, available_tag])
+  @@index([image_id])
+  @@index([is_security_update])
+}
+
+model docker_volumes {
+  id          String   @id
+  host_id     String
+  volume_id   String
+  name        String
+  driver      String
+  mountpoint  String?
+  renderer    String?
+  scope       String   @default("local")
+  labels      Json?
+  options     Json?
+  size_bytes  BigInt?
+  ref_count   Int      @default(0)
+  created_at  DateTime
+  updated_at  DateTime
+  last_checked DateTime @default(now())
+  hosts       hosts    @relation(fields: [host_id], references: [id], onDelete: Cascade)
+
+  @@unique([host_id, volume_id])
+  @@index([host_id])
+  @@index([name])
+  @@index([driver])
+}
+
+model docker_networks {
+  id             String   @id
+  host_id        String
+  network_id     String
+  name           String
+  driver         String
+  scope          String   @default("local")
+  ipv6_enabled   Boolean  @default(false)
+  internal       Boolean  @default(false)
+  attachable     Boolean  @default(true)
+  ingress        Boolean  @default(false)
+  config_only    Boolean  @default(false)
+  labels         Json?
+  ipam           Json?    // IPAM configuration (driver, config, options)
+  container_count Int     @default(0)
+  created_at     DateTime?
+  updated_at     DateTime
+  last_checked   DateTime @default(now())
+  hosts          hosts    @relation(fields: [host_id], references: [id], onDelete: Cascade)
+
+  @@unique([host_id, network_id])
+  @@index([host_id])
+  @@index([name])
+  @@index([driver])
+}
+
+model job_history {
+  id            String   @id
+  job_id        String
+  queue_name    String
+  job_name      String
+  host_id       String?
+  api_id        String?
+  status        String
+  attempt_number Int     @default(1)
+  error_message String?
+  output        Json?
+  created_at    DateTime @default(now())
+  updated_at    DateTime
+  completed_at  DateTime?
+  hosts         hosts?   @relation(fields: [host_id], references: [id], onDelete: SetNull)
+
+  @@index([job_id])
+  @@index([queue_name])
+  @@index([host_id])
+  @@index([api_id])
+  @@index([status])
+  @@index([created_at])
+}
+
+model commands {
+  id        String   @id @default(uuid())
+  host_id   String
+  command   String
+  status    String   @default("pending")
+  output    String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  hosts     hosts    @relation(fields: [host_id], references: [id], onDelete: Cascade)
+
+  @@index([host_id])
+  @@index([status])
 }
