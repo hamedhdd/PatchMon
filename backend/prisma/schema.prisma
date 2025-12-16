@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  role      String   @default("user") // admin, user
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Host {
+  id          Int       @id @default(autoincrement())
+  hostname    String    @unique
+  os          String?
+  ipAddress   String?
+  lastSeen    DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  packages    Package[]
+}
+
+model Package {
+  id            Int      @id @default(autoincrement())
+  name          String
+  version       String
+  currentVersion String?
+  status        String   @default("installed") // installed, outcome
+  hostId        Int
+  host          Host     @relation(fields: [hostId], references: [id])
+  updatedAt     DateTime @updatedAt
+
+  @@unique([hostId, name])
+}
+
+model Command {
+  id        Int      @id @default(autoincrement())
+  type      String   // update, upgrade, remove_repo
+  payload   String?  // e.g. package name or repo name
+  status    String   @default("pending") // pending, sent, completed, failed
+  output    String?  // log output from agent
+  hostId    Int
+  host      Host     @relation(fields: [hostId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
