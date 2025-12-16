@@ -2,7 +2,7 @@
 
 [![Website](https://img.shields.io/badge/Website-patchmon.net-blue?style=for-the-badge)](https://patchmon.net)
 [![Discord](https://img.shields.io/badge/Discord-Join%20Server-blue?style=for-the-badge&logo=discord)](https://patchmon.net/discord)
-[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/9technologygroup/patchmon.net)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/hamedhdd/PatchMon)
 [![Roadmap](https://img.shields.io/badge/Roadmap-View%20Progress-green?style=for-the-badge&logo=github)](https://github.com/users/9technologygroup/projects/1)
 [![Documentation](https://img.shields.io/badge/Documentation-docs.patchmon.net-blue?style=for-the-badge&logo=book)](https://docs.patchmon.net/)
 
@@ -14,7 +14,7 @@
 
 PatchMon provides centralized patch management across diverse server environments. Agents communicate outbound-only to the PatchMon server, eliminating inbound ports on monitored hosts while delivering comprehensive visibility and safe automation.
 
-![Dashboard Screenshot](https://raw.githubusercontent.com/PatchMon/PatchMon/main/dashboard.jpeg)
+![Dashboard Screenshot](https://raw.githubusercontent.com/hamedhdd/PatchMon/main/dashboard.jpeg)
 
 ## Features
 
@@ -65,7 +65,7 @@ Managed, zero-maintenance PatchMon hosting. Stay tuned.
 
 #### Docker (preferred)
 
-For getting started with Docker, see the [Docker documentation](https://github.com/PatchMon/PatchMon/blob/main/docker/README.md)
+For getting started with Docker, see the [Docker documentation](https://github.com/hamedhdd/PatchMon/blob/main/docker/README.md)
 
 #### Native Install (advanced/non-docker)
 
@@ -87,12 +87,12 @@ apt install curl -y
 
 #### Install Script
 ```bash
-curl -fsSL -o setup.sh https://raw.githubusercontent.com/PatchMon/PatchMon/refs/heads/main/setup.sh && chmod +x setup.sh && bash setup.sh
+curl -fsSL -o setup.sh https://raw.githubusercontent.com/hamedhdd/PatchMon/refs/heads/main/setup.sh && chmod +x setup.sh && bash setup.sh
 ```
 
 #### Update Script (--update flag)
 ```bash
-curl -fsSL -o setup.sh https://raw.githubusercontent.com/PatchMon/PatchMon/refs/heads/main/setup.sh && chmod +x setup.sh && bash setup.sh --update
+curl -fsSL -o setup.sh https://raw.githubusercontent.com/hamedhdd/PatchMon/refs/heads/main/setup.sh && chmod +x setup.sh && bash setup.sh --update
 ```
 
 #### Minimum specs for building : #####
@@ -178,8 +178,8 @@ We welcome contributions from the community! Here's how you can get involved:
 1. **Fork the Repository**
    ```bash
    # Click the "Fork" button on GitHub, then clone your fork
-   git clone https://github.com/YOUR_USERNAME/patchmon.net.git
-   cd patchmon.net
+   git clone https://github.com/hamedhdd/PatchMon.git
+   cd PatchMon
    ```
 
 2. **Create a Feature Branch**
@@ -293,6 +293,6 @@ Thank you to all our contributors who help make PatchMon better every day!
 **Made with ❤️ by the PatchMon Team**
 
 [![Discord](https://img.shields.io/badge/Discord-Join%20Server-blue?style=for-the-badge&logo=discord)](https://patchmon.net/discord)
-[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/PatchMon/PatchMon)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/hamedhdd/PatchMon)
 
 </div>
