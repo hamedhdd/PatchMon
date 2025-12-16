@@ -563,11 +563,10 @@ const Layout = ({ children }) => {
 									<Link
 										key={item.name}
 										to={item.href}
-										className={`group flex items-center px-2 py-3 text-sm font-medium rounded-md min-h-[44px] ${
-											isActive(item.href)
+										className={`group flex items-center px-2 py-3 text-sm font-medium rounded-md min-h-[44px] ${isActive(item.href)
 												? "bg-primary-100 dark:bg-primary-600 text-primary-900 dark:text-white"
 												: "text-secondary-600 dark:text-secondary-300 hover:bg-secondary-50 dark:hover:bg-secondary-700 hover:text-secondary-900 dark:hover:text-white"
-										}`}
+											}`}
 										onClick={() => setSidebarOpen(false)}
 									>
 										<item.icon className="mr-3 h-5 w-5" />
@@ -590,11 +589,10 @@ const Layout = ({ children }) => {
 															// Special handling for Hosts item with integrated + button (mobile)
 															<Link
 																to={subItem.href}
-																className={`group flex items-center px-2 py-3 text-sm font-medium rounded-md min-h-[44px] ${
-																	isActive(subItem.href)
+																className={`group flex items-center px-2 py-3 text-sm font-medium rounded-md min-h-[44px] ${isActive(subItem.href)
 																		? "bg-primary-100 dark:bg-primary-600 text-primary-900 dark:text-white"
 																		: "text-secondary-600 dark:text-secondary-300 hover:bg-secondary-50 dark:hover:bg-secondary-700 hover:text-secondary-900 dark:hover:text-white"
-																}`}
+																	}`}
 																onClick={() => setSidebarOpen(false)}
 															>
 																<subItem.icon className="mr-3 h-5 w-5" />
@@ -624,11 +622,10 @@ const Layout = ({ children }) => {
 															// Standard navigation item (mobile)
 															<Link
 																to={subItem.href}
-																className={`group flex items-center px-2 py-2 text-sm font-medium rounded-md ${
-																	isActive(subItem.href)
+																className={`group flex items-center px-2 py-2 text-sm font-medium rounded-md ${isActive(subItem.href)
 																		? "bg-primary-100 dark:bg-primary-600 text-primary-900 dark:text-white"
 																		: "text-secondary-600 dark:text-secondary-300 hover:bg-secondary-50 dark:hover:bg-secondary-700 hover:text-secondary-900 dark:hover:text-white"
-																} ${subItem.comingSoon ? "opacity-50 cursor-not-allowed" : ""}`}
+																	} ${subItem.comingSoon ? "opacity-50 cursor-not-allowed" : ""}`}
 																onClick={
 																	subItem.comingSoon
 																		? (e) => e.preventDefault()
@@ -684,11 +681,10 @@ const Layout = ({ children }) => {
 													<Link
 														key={subItem.name}
 														to={subItem.href}
-														className={`group flex items-center px-2 py-2 text-sm font-medium rounded-md ${
-															isActive(subItem.href)
+														className={`group flex items-center px-2 py-2 text-sm font-medium rounded-md ${isActive(subItem.href)
 																? "bg-primary-100 dark:bg-primary-600 text-primary-900 dark:text-white"
 																: "text-secondary-600 dark:text-secondary-300 hover:bg-secondary-50 dark:hover:bg-secondary-700 hover:text-secondary-900 dark:hover:text-white"
-														}`}
+															}`}
 														onClick={() => setSidebarOpen(false)}
 													>
 														<subItem.icon className="mr-3 h-5 w-5" />
@@ -712,11 +708,10 @@ const Layout = ({ children }) => {
 							<div className="px-2 space-y-1">
 								<Link
 									to="/settings/profile"
-									className={`group flex items-center px-2 py-2 text-sm font-medium rounded-md ${
-										isActive("/settings/profile")
+									className={`group flex items-center px-2 py-2 text-sm font-medium rounded-md ${isActive("/settings/profile")
 											? "bg-primary-100 dark:bg-primary-600 text-primary-900 dark:text-white"
 											: "text-secondary-600 dark:text-secondary-300 hover:bg-secondary-50 dark:hover:bg-secondary-700 hover:text-secondary-900 dark:hover:text-white"
-									}`}
+										}`}
 									onClick={() => setSidebarOpen(false)}
 								>
 									<UserCircle className="mr-3 h-5 w-5" />
@@ -748,9 +743,8 @@ const Layout = ({ children }) => {
 
 			{/* Desktop sidebar */}
 			<div
-				className={`hidden lg:fixed lg:inset-y-0 z-[100] lg:flex lg:flex-col transition-all duration-300 relative ${
-					sidebarCollapsed ? "lg:w-16" : "lg:w-56"
-				} bg-white dark:bg-transparent`}
+				className={`hidden lg:fixed lg:inset-y-0 z-[100] lg:flex lg:flex-col transition-all duration-300 relative ${sidebarCollapsed ? "lg:w-16" : "lg:w-56"
+					} bg-white dark:bg-transparent`}
 			>
 				{/* Collapse/Expand button on border */}
 				<button
@@ -772,9 +766,8 @@ const Layout = ({ children }) => {
 				</button>
 
 				<div
-					className={`flex grow flex-col gap-y-5 border-r border-secondary-200 dark:border-white/10 bg-white ${
-						sidebarCollapsed ? "px-2 shadow-lg" : "px-6"
-					}`}
+					className={`flex grow flex-col gap-y-5 border-r border-secondary-200 dark:border-white/10 bg-white ${sidebarCollapsed ? "px-2 shadow-lg" : "px-6"
+						}`}
 					style={{
 						backgroundColor: "var(--sidebar-bg, white)",
 						backdropFilter: "var(--sidebar-blur, none)",
@@ -784,9 +777,8 @@ const Layout = ({ children }) => {
 					}}
 				>
 					<div
-						className={`flex h-16 shrink-0 items-center border-b border-secondary-200 dark:border-white/10 ${
-							sidebarCollapsed ? "justify-center" : "justify-center"
-						}`}
+						className={`flex h-16 shrink-0 items-center border-b border-secondary-200 dark:border-white/10 ${sidebarCollapsed ? "justify-center" : "justify-center"
+							}`}
 					>
 						{sidebarCollapsed ? (
 							<Link to="/" className="flex items-center">
@@ -825,11 +817,10 @@ const Layout = ({ children }) => {
 										>
 											<Link
 												to={item.href}
-												className={`group flex gap-x-3 rounded-md text-sm leading-6 font-semibold transition-all duration-200 ${
-													isActive(item.href)
+												className={`group flex gap-x-3 rounded-md text-sm leading-6 font-semibold transition-all duration-200 ${isActive(item.href)
 														? "bg-primary-50 dark:bg-primary-600 text-primary-700 dark:text-white"
 														: "text-secondary-700 dark:text-secondary-200 hover:text-primary-700 dark:hover:text-primary-300 hover:bg-secondary-50 dark:hover:bg-secondary-700"
-												} ${sidebarCollapsed ? "justify-center p-2" : "p-2"}`}
+													} ${sidebarCollapsed ? "justify-center p-2" : "p-2"}`}
 												title={sidebarCollapsed ? item.name : ""}
 											>
 												<item.icon
@@ -860,11 +851,10 @@ const Layout = ({ children }) => {
 															<div className="flex items-center gap-1">
 																<Link
 																	to={subItem.href}
-																	className={`group flex gap-x-3 rounded-md text-sm leading-6 font-medium transition-all duration-200 flex-1 ${
-																		isActive(subItem.href)
+																	className={`group flex gap-x-3 rounded-md text-sm leading-6 font-medium transition-all duration-200 flex-1 ${isActive(subItem.href)
 																			? "bg-primary-50 dark:bg-primary-600 text-primary-700 dark:text-white"
 																			: "text-secondary-700 dark:text-secondary-200 hover:text-primary-700 dark:hover:text-primary-300 hover:bg-secondary-50 dark:hover:bg-secondary-700"
-																	} ${sidebarCollapsed ? "justify-center p-2" : "p-2"}`}
+																		} ${sidebarCollapsed ? "justify-center p-2" : "p-2"}`}
 																	title={sidebarCollapsed ? subItem.name : ""}
 																>
 																	<subItem.icon
@@ -875,7 +865,7 @@ const Layout = ({ children }) => {
 																			{subItem.name}
 																			{subItem.name === "Hosts" &&
 																				stats?.cards?.totalHosts !==
-																					undefined && (
+																				undefined && (
 																					<span className="ml-2 inline-flex items-center justify-center px-1.5 py-0.5 text-xs rounded bg-secondary-100 text-secondary-700">
 																						{stats.cards.totalHosts}
 																					</span>
@@ -901,15 +891,13 @@ const Layout = ({ children }) => {
 															// Standard navigation item
 															<Link
 																to={subItem.href}
-																className={`group flex gap-x-3 rounded-md text-sm leading-6 font-medium transition-all duration-200 ${
-																	isActive(subItem.href)
+																className={`group flex gap-x-3 rounded-md text-sm leading-6 font-medium transition-all duration-200 ${isActive(subItem.href)
 																		? "bg-primary-50 dark:bg-primary-600 text-primary-700 dark:text-white"
 																		: "text-secondary-700 dark:text-secondary-200 hover:text-primary-700 dark:hover:text-primary-300 hover:bg-secondary-50 dark:hover:bg-secondary-700"
-																} ${sidebarCollapsed ? "justify-center p-2 relative" : "p-2"} ${
-																	subItem.comingSoon
+																	} ${sidebarCollapsed ? "justify-center p-2 relative" : "p-2"} ${subItem.comingSoon
 																		? "opacity-50 cursor-not-allowed"
 																		: ""
-																}`}
+																	}`}
 																title={sidebarCollapsed ? subItem.name : ""}
 																onClick={
 																	subItem.comingSoon
@@ -933,7 +921,7 @@ const Layout = ({ children }) => {
 																		{subItem.name}
 																		{subItem.name === "Hosts" &&
 																			stats?.cards?.totalHosts !==
-																				undefined && (
+																			undefined && (
 																				<span className="ml-2 inline-flex items-center justify-center px-1.5 py-0.5 text-xs rounded bg-secondary-100 text-secondary-700">
 																					{stats.cards.totalHosts}
 																				</span>
@@ -985,11 +973,10 @@ const Layout = ({ children }) => {
 														<li key={subItem.name}>
 															<Link
 																to={subItem.href}
-																className={`group flex gap-x-3 rounded-md text-sm leading-6 font-medium transition-all duration-200 ${
-																	isActive(subItem.href)
+																className={`group flex gap-x-3 rounded-md text-sm leading-6 font-medium transition-all duration-200 ${isActive(subItem.href)
 																		? "bg-primary-50 dark:bg-primary-600 text-primary-700 dark:text-white"
 																		: "text-secondary-700 dark:text-secondary-200 hover:text-primary-700 dark:hover:text-primary-300 hover:bg-secondary-50 dark:hover:bg-secondary-700"
-																} ${sidebarCollapsed ? "justify-center p-2 relative" : "p-2"}`}
+																	} ${sidebarCollapsed ? "justify-center p-2 relative" : "p-2"}`}
 																title={sidebarCollapsed ? subItem.name : ""}
 															>
 																<div
@@ -1032,37 +1019,33 @@ const Layout = ({ children }) => {
 								<div className="flex items-center justify-between -mx-2 py-2">
 									<Link
 										to="/settings/profile"
-										className={`flex-1 min-w-0 rounded-md p-2 transition-all duration-200 ${
-											isActive("/settings/profile")
+										className={`flex-1 min-w-0 rounded-md p-2 transition-all duration-200 ${isActive("/settings/profile")
 												? "bg-primary-50 dark:bg-primary-600"
 												: "hover:bg-secondary-50 dark:hover:bg-secondary-700"
-										}`}
+											}`}
 									>
 										<div className="flex items-center gap-x-3">
 											<UserCircle
-												className={`h-5 w-5 shrink-0 ${
-													isActive("/settings/profile")
+												className={`h-5 w-5 shrink-0 ${isActive("/settings/profile")
 														? "text-primary-700 dark:text-white"
 														: "text-secondary-500 dark:text-secondary-400"
-												}`}
+													}`}
 											/>
 											<div className="flex flex-col min-w-0">
 												<span
-													className={`text-sm leading-6 font-semibold truncate ${
-														isActive("/settings/profile")
+													className={`text-sm leading-6 font-semibold truncate ${isActive("/settings/profile")
 															? "text-primary-700 dark:text-white"
 															: "text-secondary-700 dark:text-secondary-200"
-													}`}
+														}`}
 												>
 													{user?.first_name || user?.username}
 												</span>
 												{user?.role === "admin" && (
 													<span
-														className={`text-xs leading-4 ${
-															isActive("/settings/profile")
+														className={`text-xs leading-4 ${isActive("/settings/profile")
 																? "text-primary-600 dark:text-primary-200"
 																: "text-secondary-500 dark:text-secondary-400"
-														}`}
+															}`}
 													>
 														Role: Admin
 													</span>
@@ -1111,11 +1094,10 @@ const Layout = ({ children }) => {
 							<div className="space-y-1">
 								<Link
 									to="/settings/profile"
-									className={`flex items-center justify-center p-2 rounded-md transition-colors ${
-										isActive("/settings/profile")
+									className={`flex items-center justify-center p-2 rounded-md transition-colors ${isActive("/settings/profile")
 											? "bg-primary-50 dark:bg-primary-600 text-primary-700 dark:text-white"
 											: "text-secondary-700 dark:text-secondary-200 hover:bg-secondary-50 dark:hover:bg-secondary-700"
-									}`}
+										}`}
 									title={`My Profile (${user?.username})`}
 								>
 									<UserCircle className="h-5 w-5" />
@@ -1157,9 +1139,8 @@ const Layout = ({ children }) => {
 
 			{/* Main content */}
 			<div
-				className={`flex flex-col min-h-screen transition-all duration-300 relative z-10 ${
-					sidebarCollapsed ? "lg:pl-16" : "lg:pl-56"
-				}`}
+				className={`flex flex-col min-h-screen transition-all duration-300 relative z-10 ${sidebarCollapsed ? "lg:pl-16" : "lg:pl-56"
+					}`}
 			>
 				{/* Top bar */}
 				<div
@@ -1245,7 +1226,7 @@ const Layout = ({ children }) => {
 											<div className="p-2 space-y-1">
 												{/* GitHub */}
 												<a
-													href="https://github.com/PatchMon/PatchMon"
+													href="https://github.com/hamedhdd/PatchMon"
 													target="_blank"
 													rel="noopener noreferrer"
 													className="flex items-center gap-3 px-3 py-3 bg-gray-50 dark:bg-gray-800 text-secondary-600 dark:text-secondary-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors min-h-[44px]"
@@ -1381,7 +1362,7 @@ const Layout = ({ children }) => {
 							<div className="hidden md:flex items-center gap-1">
 								{/* 1) GitHub */}
 								<a
-									href="https://github.com/PatchMon/PatchMon"
+									href="https://github.com/hamedhdd/PatchMon"
 									target="_blank"
 									rel="noopener noreferrer"
 									className="flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-50 dark:bg-transparent text-secondary-600 dark:text-secondary-300 hover:bg-gray-100 dark:hover:bg-white/10 rounded-lg transition-colors shadow-sm group relative"

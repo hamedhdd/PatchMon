@@ -195,7 +195,7 @@ const Settings = () => {
 				defaultUserRole: settings.default_user_role || "user",
 				githubRepoUrl:
 					settings.github_repo_url ||
-					"https://github.com/PatchMon/PatchMon.git",
+					"https://github.com/hamedhdd/PatchMon.git",
 				repositoryType: settings.repository_type || "public",
 				sshKeyPath: settings.ssh_key_path || "",
 				useCustomSshKey: !!settings.ssh_key_path,
@@ -496,18 +496,16 @@ const Settings = () => {
 			{/* Toast Notification */}
 			{toast && (
 				<div
-					className={`fixed top-4 right-4 z-50 max-w-md rounded-lg shadow-lg border-2 p-4 flex items-start space-x-3 animate-in slide-in-from-top-5 ${
-						toast.type === "success"
+					className={`fixed top-4 right-4 z-50 max-w-md rounded-lg shadow-lg border-2 p-4 flex items-start space-x-3 animate-in slide-in-from-top-5 ${toast.type === "success"
 							? "bg-green-50 dark:bg-green-900/90 border-green-500 dark:border-green-600"
 							: "bg-red-50 dark:bg-red-900/90 border-red-500 dark:border-red-600"
-					}`}
+						}`}
 				>
 					<div
-						className={`flex-shrink-0 rounded-full p-1 ${
-							toast.type === "success"
+						className={`flex-shrink-0 rounded-full p-1 ${toast.type === "success"
 								? "bg-green-100 dark:bg-green-800"
 								: "bg-red-100 dark:bg-red-800"
-						}`}
+							}`}
 					>
 						{toast.type === "success" ? (
 							<CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
@@ -517,11 +515,10 @@ const Settings = () => {
 					</div>
 					<div className="flex-1">
 						<p
-							className={`text-sm font-medium ${
-								toast.type === "success"
+							className={`text-sm font-medium ${toast.type === "success"
 									? "text-green-800 dark:text-green-100"
 									: "text-red-800 dark:text-red-100"
-							}`}
+								}`}
 						>
 							{toast.message}
 						</p>
@@ -529,11 +526,10 @@ const Settings = () => {
 					<button
 						type="button"
 						onClick={() => setToast(null)}
-						className={`flex-shrink-0 rounded-lg p-1 transition-colors ${
-							toast.type === "success"
+						className={`flex-shrink-0 rounded-lg p-1 transition-colors ${toast.type === "success"
 								? "hover:bg-green-100 dark:hover:bg-green-800 text-green-600 dark:text-green-400"
 								: "hover:bg-red-100 dark:hover:bg-red-800 text-red-600 dark:text-red-400"
-						}`}
+							}`}
 					>
 						<X className="h-4 w-4" />
 					</button>
@@ -571,11 +567,10 @@ const Settings = () => {
 									type="button"
 									key={tab.id}
 									onClick={() => setActiveTab(tab.id)}
-									className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center gap-2 ${
-										activeTab === tab.id
+									className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center gap-2 ${activeTab === tab.id
 											? "border-primary-500 text-primary-600 dark:text-primary-400"
 											: "border-transparent text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300 hover:border-secondary-300 dark:hover:border-secondary-500"
-									}`}
+										}`}
 								>
 									<Icon className="h-4 w-4" />
 									{tab.name}
@@ -635,11 +630,10 @@ const Settings = () => {
 										onChange={(e) =>
 											handleInputChange("serverHost", e.target.value)
 										}
-										className={`w-full border rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-secondary-700 text-secondary-900 dark:text-white ${
-											errors.serverHost
+										className={`w-full border rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-secondary-700 text-secondary-900 dark:text-white ${errors.serverHost
 												? "border-red-300 dark:border-red-500"
 												: "border-secondary-300 dark:border-secondary-600"
-										}`}
+											}`}
 										placeholder="example.com"
 									/>
 									{errors.serverHost && (
@@ -666,11 +660,10 @@ const Settings = () => {
 												parseInt(e.target.value, 10),
 											)
 										}
-										className={`w-full border rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-secondary-700 text-secondary-900 dark:text-white ${
-											errors.serverPort
+										className={`w-full border rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-secondary-700 text-secondary-900 dark:text-white ${errors.serverPort
 												? "border-red-300 dark:border-red-500"
 												: "border-secondary-300 dark:border-secondary-600"
-										}`}
+											}`}
 										min="1"
 										max="65535"
 									/>
@@ -900,11 +893,10 @@ const Settings = () => {
 												handleInputChange("updateInterval", 60);
 											}
 										}}
-										className={`w-28 border rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-secondary-700 text-secondary-900 dark:text-white ${
-											errors.updateInterval
+										className={`w-28 border rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-secondary-700 text-secondary-900 dark:text-white ${errors.updateInterval
 												? "border-red-300 dark:border-red-500"
 												: "border-secondary-300 dark:border-secondary-600"
-										}`}
+											}`}
 										placeholder="60"
 									/>
 								</div>
@@ -917,11 +909,10 @@ const Settings = () => {
 												key={m}
 												type="button"
 												onClick={() => handleInputChange("updateInterval", m)}
-												className={`px-3 py-1.5 rounded-md text-xs font-medium border ${
-													formData.updateInterval === m
+												className={`px-3 py-1.5 rounded-md text-xs font-medium border ${formData.updateInterval === m
 														? "bg-primary-600 text-white border-primary-600"
 														: "bg-white dark:bg-secondary-700 text-secondary-700 dark:text-secondary-200 border-secondary-300 dark:border-secondary-600 hover:bg-secondary-50 dark:hover:bg-secondary-600"
-												}`}
+													}`}
 												aria-label={`Set ${m} minutes`}
 											>
 												{m % 60 === 0 ? `${m / 60}h` : `${m}m`}
@@ -1080,11 +1071,10 @@ const Settings = () => {
 									type="button"
 									onClick={handleSave}
 									disabled={!isDirty || updateSettingsMutation.isPending}
-									className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white ${
-										!isDirty || updateSettingsMutation.isPending
+									className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white ${!isDirty || updateSettingsMutation.isPending
 											? "bg-secondary-400 cursor-not-allowed"
 											: "bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-									}`}
+										}`}
 								>
 									{updateSettingsMutation.isPending ? (
 										<>
@@ -1627,11 +1617,10 @@ const Settings = () => {
 											type="button"
 											onClick={handleSave}
 											disabled={!isDirty || updateSettingsMutation.isPending}
-											className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white ${
-												!isDirty || updateSettingsMutation.isPending
+											className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white ${!isDirty || updateSettingsMutation.isPending
 													? "bg-secondary-400 cursor-not-allowed"
 													: "bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-											}`}
+												}`}
 										>
 											{updateSettingsMutation.isPending ? (
 												<>
@@ -1986,9 +1975,8 @@ const LogoUploadModal = ({
 									<img
 										src={previewUrl}
 										alt="Preview"
-										className={`object-contain ${
-											logoType === "favicon" ? "h-8 w-8" : "max-h-16 max-w-full"
-										}`}
+										className={`object-contain ${logoType === "favicon" ? "h-8 w-8" : "max-h-16 max-w-full"
+											}`}
 									/>
 								</div>
 							</div>

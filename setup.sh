@@ -35,7 +35,7 @@ NC='\033[0m' # No Color
 
 # Global variables
 SCRIPT_VERSION="self-hosting-install.sh v1.3.3-selfhost-2025-11-07"
-DEFAULT_GITHUB_REPO="https://github.com/PatchMon/PatchMon.git"
+DEFAULT_GITHUB_REPO="https://github.com/hamedhdd/PatchMon.git"
 FQDN=""
 CUSTOM_FQDN=""
 EMAIL=""

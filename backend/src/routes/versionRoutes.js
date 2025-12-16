@@ -6,7 +6,7 @@ const { getPrismaClient } = require("../config/prisma");
 const prisma = getPrismaClient();
 
 // Default GitHub repository URL
-const DEFAULT_GITHUB_REPO = "https://github.com/PatchMon/PatchMon.git";
+const DEFAULT_GITHUB_REPO = "https://github.com/hamedhdd/PatchMon.git";
 
 const router = express.Router();
 
@@ -320,11 +320,11 @@ router.get(
 						const githubRepoUrl = settings.githubRepoUrl || DEFAULT_GITHUB_REPO;
 						latestRelease = settings.latest_version
 							? {
-									version: settings.latest_version,
-									tagName: `v${settings.latest_version}`,
-									publishedAt: null, // Only use date from GitHub API, not cached data
-									htmlUrl: `${githubRepoUrl.replace(/\.git$/, "")}/releases/tag/v${settings.latest_version}`,
-								}
+								version: settings.latest_version,
+								tagName: `v${settings.latest_version}`,
+								publishedAt: null, // Only use date from GitHub API, not cached data
+								htmlUrl: `${githubRepoUrl.replace(/\.git$/, "")}/releases/tag/v${settings.latest_version}`,
+							}
 							: null;
 					}
 				}
