@@ -60,10 +60,7 @@ router.post('/agent/checkin', async (req, res) => {
             }
         });
 
-        // 2. Process Packages (Simple overwrite strategy for now)
-        // In a real app, we might compare diffs. Here we delete old and re-insert for simplicity,
-        // or upsert individually. Upsert is safer.
-
+        // 2. Process Packages
         if (packages && Array.isArray(packages)) {
             for (const pkg of packages) {
                 await prisma.package.upsert({
@@ -94,8 +91,6 @@ router.post('/agent/checkin', async (req, res) => {
         res.status(500).json({ error: 'Failed to process check-in' });
     }
 });
-
-
 
 // --- Command Queue Endpoints ---
 

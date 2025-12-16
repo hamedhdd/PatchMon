@@ -2,7 +2,7 @@
 
 # Configuration
 SERVER_URL="http://localhost:3000/api/v1"
-API_KEY="placeholder_key"
+# API_KEY="placeholder_key"
 
 # OS Detection
 if [ -f /etc/os-release ]; then
@@ -20,7 +20,6 @@ echo "Host: $HOSTNAME"
 echo "OS: $OS_NAME"
 
 # Package Collection (Mock for now)
-# In real impl, checking apt/yum/dnf
 echo "Collecting package information..."
 
 PACKAGES='[
@@ -33,10 +32,9 @@ echo "Sending data to $SERVER_URL..."
 # Payload
 DATA="{\"hostname\": \"$HOSTNAME\", \"os\": \"$OS_NAME\", \"packages\": $PACKAGES}"
 
-# Send to server
+# Send to server (Check-in)
 # curl -X POST -H "Content-Type: application/json" -d "$DATA" $SERVER_URL/agent/checkin
-
-echo "Data sent successfully (Simulated)."
+echo "Data sent successfully (Simulated check-in)."
 
 # --- Command Polling Loop ---
 echo "Checking for pending commands..."
@@ -78,4 +76,3 @@ if [ ! -z "$COMMAND_ID" ]; then
 else
     echo "No pending commands."
 fi
-
