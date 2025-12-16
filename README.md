@@ -16,7 +16,14 @@ PatchMon provides centralized patch management across diverse server environment
 
 ### Installation
 
-#### 1. Backend
+#### 1. Quick Setup (Linux/Mac)
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+#### 2. Manual Installation
+**Backend**
 ```bash
 cd backend
 npm install

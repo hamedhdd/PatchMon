@@ -92,6 +92,35 @@ router.post('/agent/checkin', async (req, res) => {
     }
 });
 
+// 4. Statistics Endpoint
+router.get('/stats', async (req, res) => {
+    try {
+        const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
+
+        const totalHosts = await prisma.host.count();
+        const onlineHosts = await prisma.host.count({
+            where: { lastSeen: { gt: fiveMinutesAgo } }
+        });
+        const offlineHosts = totalHosts - onlineHosts;
+
+        // Mock pending updates for now (or query packages with status 'outcome'?)
+        // Let's count packages not 'installed'
+        const pendingUpdates = await prisma.package.count({
+            where: { status: { not: 'installed' } }
+        });
+
+        res.json({
+            totalHosts,
+            onlineHosts,
+            offlineHosts,
+            pendingUpdates
+        });
+    } catch (error) {
+        console.error('Stats error:', error);
+        res.status(500).json({ error: 'Internal Error' });
+    }
+});
+
 // --- Command Queue Endpoints ---
 
 // 1. Create Command (Frontend calls this)
