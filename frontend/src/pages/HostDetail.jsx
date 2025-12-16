@@ -472,8 +472,8 @@ const HostDetail = () => {
 							{wsStatus && (
 								<span
 									className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold uppercase ${wsStatus.connected
-											? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 animate-pulse"
-											: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
+										? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 animate-pulse"
+										: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
 										}`}
 									title={
 										wsStatus.connected
@@ -782,8 +782,8 @@ const HostDetail = () => {
 										}
 										disabled={toggleAutoUpdateMutation.isPending}
 										className={`relative inline-flex h-5 w-9 items-center rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${host.auto_update
-												? "bg-primary-600 dark:bg-primary-500"
-												: "bg-secondary-200 dark:bg-secondary-600"
+											? "bg-primary-600 dark:bg-primary-500"
+											: "bg-secondary-200 dark:bg-secondary-600"
 											}`}
 									>
 										<span
@@ -968,10 +968,10 @@ const HostDetail = () => {
 													</p>
 													<span
 														className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${host.selinux_status === "enabled"
-																? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-																: host.selinux_status === "permissive"
-																	? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
-																	: "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
+															? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+															: host.selinux_status === "permissive"
+																? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+																: "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
 															}`}
 													>
 														{host.selinux_status}
@@ -1191,8 +1191,8 @@ const HostDetail = () => {
 														/>
 														<span
 															className={`text-sm font-medium ${update.status === "success"
-																	? "text-success-700 dark:text-success-300"
-																	: "text-danger-700 dark:text-danger-300"
+																? "text-success-700 dark:text-success-300"
+																: "text-danger-700 dark:text-danger-300"
 																}`}
 														>
 															{update.status === "success"
@@ -1282,8 +1282,8 @@ const HostDetail = () => {
 							{notesMessage.text && (
 								<div
 									className={`rounded-md p-4 ${notesMessage.type === "success"
-											? "bg-green-50 dark:bg-green-900 border border-green-200 dark:border-green-700"
-											: "bg-red-50 dark:bg-red-900 border border-red-200 dark:border-red-700"
+										? "bg-green-50 dark:bg-green-900 border border-green-200 dark:border-green-700"
+										: "bg-red-50 dark:bg-red-900 border border-red-200 dark:border-red-700"
 										}`}
 								>
 									<div className="flex">
@@ -1295,8 +1295,8 @@ const HostDetail = () => {
 										<div className="ml-3">
 											<p
 												className={`text-sm font-medium ${notesMessage.type === "success"
-														? "text-green-800 dark:text-green-200"
-														: "text-red-800 dark:text-red-200"
+													? "text-green-800 dark:text-green-200"
+													: "text-red-800 dark:text-red-200"
 													}`}
 											>
 												{notesMessage.text}
@@ -1394,8 +1394,8 @@ const HostDetail = () => {
 													!wsStatus?.connected
 												}
 												className={`relative inline-flex h-5 w-9 items-center rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${integrationsData?.data?.integrations?.docker
-														? "bg-primary-600 dark:bg-primary-500"
-														: "bg-secondary-200 dark:bg-secondary-600"
+													? "bg-primary-600 dark:bg-primary-500"
+													: "bg-secondary-200 dark:bg-secondary-600"
 													} ${toggleIntegrationMutation.isPending ||
 														!integrationsData?.data?.connected
 														? "opacity-50 cursor-not-allowed"
@@ -1404,8 +1404,8 @@ const HostDetail = () => {
 											>
 												<span
 													className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${integrationsData?.data?.integrations?.docker
-															? "translate-x-5"
-															: "translate-x-1"
+														? "translate-x-5"
+														: "translate-x-1"
 														}`}
 												/>
 											</button>
@@ -1430,8 +1430,8 @@ const HostDetail = () => {
 							type="button"
 							onClick={() => handleTabChange("host")}
 							className={`px-4 py-2 text-sm font-medium ${activeTab === "host"
-									? "text-primary-600 dark:text-primary-400 border-b-2 border-primary-500"
-									: "text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300"
+								? "text-primary-600 dark:text-primary-400 border-b-2 border-primary-500"
+								: "text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300"
 								}`}
 						>
 							Host Info
@@ -1440,8 +1440,8 @@ const HostDetail = () => {
 							type="button"
 							onClick={() => handleTabChange("network")}
 							className={`px-4 py-2 text-sm font-medium ${activeTab === "network"
-									? "text-primary-600 dark:text-primary-400 border-b-2 border-primary-500"
-									: "text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300"
+								? "text-primary-600 dark:text-primary-400 border-b-2 border-primary-500"
+								: "text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300"
 								}`}
 						>
 							Network
@@ -1450,8 +1450,8 @@ const HostDetail = () => {
 							type="button"
 							onClick={() => handleTabChange("system")}
 							className={`px-4 py-2 text-sm font-medium ${activeTab === "system"
-									? "text-primary-600 dark:text-primary-400 border-b-2 border-primary-500"
-									: "text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300"
+								? "text-primary-600 dark:text-primary-400 border-b-2 border-primary-500"
+								: "text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300"
 								}`}
 						>
 							System
@@ -1460,8 +1460,8 @@ const HostDetail = () => {
 							type="button"
 							onClick={() => handleTabChange("history")}
 							className={`px-4 py-2 text-sm font-medium ${activeTab === "history"
-									? "text-primary-600 dark:text-primary-400 border-b-2 border-primary-500"
-									: "text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300"
+								? "text-primary-600 dark:text-primary-400 border-b-2 border-primary-500"
+								: "text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300"
 								}`}
 						>
 							Package Reports
@@ -1470,8 +1470,8 @@ const HostDetail = () => {
 							type="button"
 							onClick={() => handleTabChange("queue")}
 							className={`px-4 py-2 text-sm font-medium ${activeTab === "queue"
-									? "text-primary-600 dark:text-primary-400 border-b-2 border-primary-500"
-									: "text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300"
+								? "text-primary-600 dark:text-primary-400 border-b-2 border-primary-500"
+								: "text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300"
 								}`}
 						>
 							Agent Queue
@@ -1480,8 +1480,8 @@ const HostDetail = () => {
 							type="button"
 							onClick={() => handleTabChange("notes")}
 							className={`px-4 py-2 text-sm font-medium ${activeTab === "notes"
-									? "text-primary-600 dark:text-primary-400 border-b-2 border-primary-500"
-									: "text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300"
+								? "text-primary-600 dark:text-primary-400 border-b-2 border-primary-500"
+								: "text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300"
 								}`}
 						>
 							Notes
@@ -1490,8 +1490,8 @@ const HostDetail = () => {
 							type="button"
 							onClick={() => handleTabChange("integrations")}
 							className={`px-4 py-2 text-sm font-medium ${activeTab === "integrations"
-									? "text-primary-600 dark:text-primary-400 border-b-2 border-primary-500"
-									: "text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300"
+								? "text-primary-600 dark:text-primary-400 border-b-2 border-primary-500"
+								: "text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300"
 								}`}
 						>
 							Integrations
@@ -1608,8 +1608,8 @@ const HostDetail = () => {
 											}
 											disabled={toggleAutoUpdateMutation.isPending}
 											className={`relative inline-flex h-5 w-9 items-center rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${host.auto_update
-													? "bg-primary-600 dark:bg-primary-500"
-													: "bg-secondary-200 dark:bg-secondary-600"
+												? "bg-primary-600 dark:bg-primary-500"
+												: "bg-secondary-200 dark:bg-secondary-600"
 												}`}
 										>
 											<span
@@ -1639,8 +1639,8 @@ const HostDetail = () => {
 										>
 											<RefreshCw
 												className={`h-3 w-3 ${forceAgentUpdateMutation.isPending
-														? "animate-spin"
-														: ""
+													? "animate-spin"
+													: ""
 													}`}
 											/>
 											{forceAgentUpdateMutation.isPending
@@ -1790,10 +1790,10 @@ const HostDetail = () => {
 														</p>
 														<span
 															className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${host.selinux_status === "enabled"
-																	? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-																	: host.selinux_status === "permissive"
-																		? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
-																		: "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
+																? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+																: host.selinux_status === "permissive"
+																	? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+																	: "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
 																}`}
 														>
 															{host.selinux_status}
@@ -2053,8 +2053,8 @@ const HostDetail = () => {
 															/>
 															<span
 																className={`text-sm font-medium ${update.status === "success"
-																		? "text-success-700 dark:text-success-300"
-																		: "text-danger-700 dark:text-danger-300"
+																	? "text-success-700 dark:text-success-300"
+																	: "text-danger-700 dark:text-danger-300"
 																	}`}
 															>
 																{update.status === "success"
@@ -2146,8 +2146,8 @@ const HostDetail = () => {
 																	/>
 																	<span
 																		className={`text-xs font-medium ${update.status === "success"
-																				? "text-success-700 dark:text-success-300"
-																				: "text-danger-700 dark:text-danger-300"
+																			? "text-success-700 dark:text-success-300"
+																			: "text-danger-700 dark:text-danger-300"
 																			}`}
 																	>
 																		{update.status === "success"
@@ -2280,8 +2280,8 @@ const HostDetail = () => {
 								{notesMessage.text && (
 									<div
 										className={`rounded-md p-4 ${notesMessage.type === "success"
-												? "bg-green-50 dark:bg-green-900 border border-green-200 dark:border-green-700"
-												: "bg-red-50 dark:bg-red-900 border border-red-200 dark:border-red-700"
+											? "bg-green-50 dark:bg-green-900 border border-green-200 dark:border-green-700"
+											: "bg-red-50 dark:bg-red-900 border border-red-200 dark:border-red-700"
 											}`}
 									>
 										<div className="flex">
@@ -2293,8 +2293,8 @@ const HostDetail = () => {
 											<div className="ml-3">
 												<p
 													className={`text-sm font-medium ${notesMessage.type === "success"
-															? "text-green-800 dark:text-green-200"
-															: "text-red-800 dark:text-red-200"
+														? "text-green-800 dark:text-green-200"
+														: "text-red-800 dark:text-red-200"
 														}`}
 												>
 													{notesMessage.text}
@@ -2401,8 +2401,8 @@ const HostDetail = () => {
 																	: "Enable Docker integration"
 														}
 														className={`relative inline-flex h-5 w-9 items-center rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${integrationsData?.data?.integrations?.docker
-																? "bg-primary-600 dark:bg-primary-500"
-																: "bg-secondary-200 dark:bg-secondary-600"
+															? "bg-primary-600 dark:bg-primary-500"
+															: "bg-secondary-200 dark:bg-secondary-600"
 															} ${toggleIntegrationMutation.isPending ||
 																!integrationsData?.data?.connected
 																? "opacity-50 cursor-not-allowed"
@@ -2411,8 +2411,8 @@ const HostDetail = () => {
 													>
 														<span
 															className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${integrationsData?.data?.integrations?.docker
-																	? "translate-x-5"
-																	: "translate-x-1"
+																? "translate-x-5"
+																: "translate-x-1"
 																}`}
 														/>
 													</button>
@@ -2476,7 +2476,11 @@ const CredentialsModal = ({ host, isOpen, onClose }) => {
 		queryFn: () => settingsAPI.getServerUrl().then((res) => res.data),
 	});
 
-	const serverUrl = serverUrlData?.server_url || window.location.origin;
+	const serverUrl =
+		serverUrlData?.server_url &&
+			serverUrlData.server_url !== "http://localhost:3001"
+			? serverUrlData.server_url
+			: window.location.origin;
 
 	// Fetch settings for dynamic curl flags (local to modal)
 	const { data: settings } = useQuery({
@@ -2558,8 +2562,8 @@ const CredentialsModal = ({ host, isOpen, onClose }) => {
 						type="button"
 						onClick={() => setActiveTab("quick-install")}
 						className={`w-full flex items-center justify-between px-4 py-3 rounded-md font-medium text-sm transition-colors ${activeTab === "quick-install"
-								? "bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 border border-primary-200 dark:border-primary-800"
-								: "bg-secondary-50 dark:bg-secondary-700 text-secondary-700 dark:text-secondary-300 border border-secondary-200 dark:border-secondary-600 hover:bg-secondary-100 dark:hover:bg-secondary-600"
+							? "bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 border border-primary-200 dark:border-primary-800"
+							: "bg-secondary-50 dark:bg-secondary-700 text-secondary-700 dark:text-secondary-300 border border-secondary-200 dark:border-secondary-600 hover:bg-secondary-100 dark:hover:bg-secondary-600"
 							}`}
 					>
 						<span>Quick Install</span>
@@ -2571,8 +2575,8 @@ const CredentialsModal = ({ host, isOpen, onClose }) => {
 						type="button"
 						onClick={() => setActiveTab("credentials")}
 						className={`w-full flex items-center justify-between px-4 py-3 rounded-md font-medium text-sm transition-colors ${activeTab === "credentials"
-								? "bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 border border-primary-200 dark:border-primary-800"
-								: "bg-secondary-50 dark:bg-secondary-700 text-secondary-700 dark:text-secondary-300 border border-secondary-200 dark:border-secondary-600 hover:bg-secondary-100 dark:hover:bg-secondary-600"
+							? "bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 border border-primary-200 dark:border-primary-800"
+							: "bg-secondary-50 dark:bg-secondary-700 text-secondary-700 dark:text-secondary-300 border border-secondary-200 dark:border-secondary-600 hover:bg-secondary-100 dark:hover:bg-secondary-600"
 							}`}
 					>
 						<span>API Credentials</span>
@@ -2589,8 +2593,8 @@ const CredentialsModal = ({ host, isOpen, onClose }) => {
 							type="button"
 							onClick={() => setActiveTab("quick-install")}
 							className={`py-2 px-1 border-b-2 font-medium text-sm ${activeTab === "quick-install"
-									? "border-primary-500 text-primary-600 dark:text-primary-400"
-									: "border-transparent text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300 hover:border-secondary-300 dark:hover:border-secondary-500"
+								? "border-primary-500 text-primary-600 dark:text-primary-400"
+								: "border-transparent text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300 hover:border-secondary-300 dark:hover:border-secondary-500"
 								}`}
 						>
 							Quick Install
@@ -2599,8 +2603,8 @@ const CredentialsModal = ({ host, isOpen, onClose }) => {
 							type="button"
 							onClick={() => setActiveTab("credentials")}
 							className={`py-2 px-1 border-b-2 font-medium text-sm ${activeTab === "credentials"
-									? "border-primary-500 text-primary-600 dark:text-primary-400"
-									: "border-transparent text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300 hover:border-secondary-300 dark:hover:border-secondary-500"
+								? "border-primary-500 text-primary-600 dark:text-primary-400"
+								: "border-transparent text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300 hover:border-secondary-300 dark:hover:border-secondary-500"
 								}`}
 						>
 							API Credentials

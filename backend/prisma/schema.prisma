@@ -178,7 +178,7 @@ model role_permissions {
 
 model settings {
   id                     String    @id
-  server_url             String    @default("http://localhost:3001")
+  server_url             String    @default("")
   server_protocol        String    @default("http")
   server_host            String    @default("localhost")
   server_port            Int       @default(3001)
